@@ -19,3 +19,15 @@
 
 # Go workspace file
 go.work
+
+# Goland
+
+*.iml
+*.ipr
+*.iws
+.idea/
+/build/
+/dist/
+/out/
+# CMake
+cmake-build-*/
