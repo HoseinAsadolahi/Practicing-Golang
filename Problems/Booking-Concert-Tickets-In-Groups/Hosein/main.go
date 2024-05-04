@@ -26,36 +26,36 @@ func Constructor(n int, m int) BookMyShow {
 	return bms
 }
 
-func (this *BookMyShow) Gather(k int, maxRow int) []int {
+func (bms *BookMyShow) Gather(k int, maxRow int) []int {
 	for i := 0; i <= maxRow; i++ {
-		if this.EmptySeats[i] >= k {
-			this.EmptySeats[i] -= k
-			this.tmp[i] -= k
-			return []int{i, this.m - this.EmptySeats[i] - k}
+		if bms.EmptySeats[i] >= k {
+			bms.EmptySeats[i] -= k
+			bms.tmp[i] -= k
+			return []int{i, bms.m - bms.EmptySeats[i] - k}
 		}
 	}
 	return []int{}
 }
 
-func (this *BookMyShow) Scatter(k int, maxRow int) bool {
+func (bms *BookMyShow) Scatter(k int, maxRow int) bool {
 	j := 0
 	for i := 0; i <= maxRow; i++ {
-		if this.tmp[i] >= 0 {
-			if this.tmp[i] >= k {
-				this.tmp[i] -= k
+		if bms.tmp[i] >= 0 {
+			if bms.tmp[i] >= k {
+				bms.tmp[i] -= k
 				for k = 0; k <= i; k++ {
-					this.EmptySeats[k] = this.tmp[k]
+					bms.EmptySeats[k] = bms.tmp[k]
 				}
 				return true
 			} else {
-				k -= this.EmptySeats[i]
-				this.EmptySeats[i] = 0
+				k -= bms.EmptySeats[i]
+				bms.EmptySeats[i] = 0
 			}
 		}
 		j++
 	}
 	for k = 0; k <= j; k++ {
-		this.EmptySeats[k] = this.tmp[k]
+		bms.EmptySeats[k] = bms.tmp[k]
 	}
 	return false
 }
